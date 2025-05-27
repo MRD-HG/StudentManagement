@@ -1,37 +1,81 @@
 <?php
 include '../config/db.php'; //
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate inputs (basic example)
-    if (empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['email']) || empty($_POST['department'])) {
-        $error = "All fields are required.";
+$page_title = "Add New Teacher";
+$error_message = '';
+$form_data = ['first_name' => '', 'last_name' => '', 'email' => '', 'department' => '']; // For repopulating
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { //
+    $form_data['first_name'] = $_POST['first_name'] ?? ''; //
+    $form_data['last_name'] = $_POST['last_name'] ?? ''; //
+    $form_data['email'] = $_POST['email'] ?? ''; //
+    $form_data['department'] = $_POST['department'] ?? ''; //
+
+    if (empty($form_data['first_name']) || empty($form_data['last_name']) || empty($form_data['email']) || empty($form_data['department'])) {
+        $error_message = "All fields are required.";
+    } elseif (!filter_var($form_data['email'], FILTER_VALIDATE_EMAIL)) {
+        $error_message = "Invalid email format.";
     } else {
-        $stmt = $pdo->prepare("INSERT INTO teachers (first_name, last_name, email, department) VALUES (?, ?, ?, ?)"); //
-        $stmt->execute([$_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['department']]); //
-        header("Location: list.php?status=added"); //
-        exit;
+        try {
+            $stmt = $pdo->prepare("INSERT INTO teachers (first_name, last_name, email, department) VALUES (?, ?, ?, ?)"); //
+            $stmt->execute([$form_data['first_name'], $form_data['last_name'], $form_data['email'], $form_data['department']]); //
+            header("Location: list.php?status=added"); //
+            exit;
+        } catch (PDOException $e) {
+            if ($e->errorInfo[1] == 1062) {
+                $error_message = "This email address is already registered.";
+            } else {
+                $error_message = "Database error: Could not add teacher.";
+            }
+        }
     }
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Add New Teacher</title>
-    </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= htmlspecialchars($page_title) ?> - Teacher Management</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
 <body>
-    <h2>Add New Teacher</h2>
-    <?php if (isset($error)): ?>
-        <p style="color:red;"><?= htmlspecialchars($error) ?></p>
-    <?php endif; ?>
-    <form method="post">
-        First Name: <input type="text" name="first_name" value="<?= htmlspecialchars($_POST['first_name'] ?? '') ?>" required><br>
-        Last Name: <input type="text" name="last_name" value="<?= htmlspecialchars($_POST['last_name'] ?? '') ?>" required><br>
-        Email: <input type="email" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required><br>
-        Department: <input type="text" name="department" value="<?= htmlspecialchars($_POST['department'] ?? '') ?>" required><br>
-        <button type="submit">Add Teacher</button>
-    </form>
-    <br>
-    <a href="list.php">Back to Teachers List</a>
-    <br>
-    <a href="../index.php">Back to Main Menu</a>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2><?= htmlspecialchars($page_title) ?></h2>
+        </div>
+        <div class="card-body">
+            <?php if (!empty($error_message)): ?>
+                <div class="alert alert-danger"><?= htmlspecialchars($error_message) ?></div>
+            <?php endif; ?>
+
+            <form method="post" action="add.php">
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" class="form-control" value="<?= htmlspecialchars($form_data['first_name']) ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" class="form-control" value="<?= htmlspecialchars($form_data['last_name']) ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" value="<?= htmlspecialchars($form_data['email']) ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="department">Department:</label>
+                    <input type="text" id="department" name="department" class="form-control" value="<?= htmlspecialchars($form_data['department']) ?>" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Add Teacher</button>
+                <a href="list.php" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+     <div class="mt-3">
+        <a href="list.php" class="btn btn-light">Back to Teachers List</a>
+        <a href="../index.php" class="btn btn-light">Back to Main Menu</a>
+    </div>
+</div>
 </body>
 </html>

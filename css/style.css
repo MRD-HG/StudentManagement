@@ -1,181 +1,370 @@
+/* css/style.css - Advanced */
+
+:root {
+    --primary-color: #007bff; /* Blue */
+    --primary-hover-color: #0056b3;
+    --secondary-color: #6c757d; /* Gray */
+    --success-color: #28a745; /* Green */
+    --danger-color: #dc3545; /* Red */
+    --warning-color: #ffc107; /* Yellow */
+    --info-color: #17a2b8; /* Teal */
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --border-radius: 0.25rem;
+    --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --input-padding-y: 0.5rem;
+    --input-padding-x: 0.75rem;
+}
+
+/* General Reset & Body */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: var(--font-family);
+    line-height: 1.6;
+    background-color: #eef1f5; /* Lighter gray background */
+    color: var(--dark-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-h2 {
-    color: #0056b3; /* A nice blue */
-    border-bottom: 2px solid #0056b3;
-    padding-bottom: 5px;
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+/* Header (Optional - if you add a common header) */
+.app-header {
+    background-color: var(--dark-color);
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.app-header h1 {
+    margin: 0;
+    font-size: 1.75rem;
 }
 
-table, th, td {
-    border: 1px solid #ddd;
+/* Navigation - Main Menu on index.php or a common nav bar */
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* Space between items */
+    margin-bottom: 2rem;
 }
 
-th, td {
-    padding: 12px;
-    text-align: left;
-}
-
-th {
-    background-color: #007bff; /* Bootstrap primary blue */
-    color: white;
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-tr:hover {
-    background-color: #f1f1f1;
-}
-
-a {
-    color: #007bff;
+.main-nav ul li a {
     text-decoration: none;
-    margin-right: 10px;
+    color: var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    border: 1px solid transparent; /* For hover effect */
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.75rem;
+    color: var(--dark-color);
+    font-weight: 500; /* Lighter than default bold */
+}
+h2 { font-size: 1.8rem; color: var(--primary-color); padding-bottom: 0.5rem; border-bottom: 2px solid #eee; }
+h3 { font-size: 1.5rem; }
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
 a:hover {
+    color: var(--primary-hover-color);
     text-decoration: underline;
 }
 
-button, input[type="submit"] {
-    background-color: #28a745; /* Green */
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover, input[type="submit"]:hover {
-    background-color: #218838;
-}
-
-input[type="text"], input[type="email"], input[type="number"], input[type="password"] {
-    width: calc(100% - 22px); /* Full width minus padding and border */
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Important for width calculation */
-}
-
-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
-
-form br {
-    display: none; /* Hide <br> if using block inputs or better spacing */
-}
-
-/* Add some spacing between form elements */
-form input, form button {
-    margin-bottom: 10px;
-}
-form input:last-of-type { /* More specific selector for the last input */
-    margin-bottom: 20px;
-}
-
-
-/* Message styles */
-.message {
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 4px;
-}
-.message.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-.message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
-.message.info {
-    background-color: #d1ecf1;
-    color: #0c5460;
-    border: 1px solid #bee5eb;
-}
-
-/* Navigation Links Styling */
-.nav-links a, .action-links a {
+/* Buttons */
+.btn {
     display: inline-block;
-    margin: 5px 0;
-    padding: 8px 12px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 4px;
-    text-decoration: none;
-}
-.nav-links a:hover, .action-links a:hover {
-    background-color: #0056b3;
-    text-decoration: none;
-}
-.nav-links { margin-bottom: 20px; }
-
-/* Specific button styles */
-.button-add {
-    background-color: #007bff; /* Blue for add */
-}
-.button-add:hover {
-    background-color: #0056b3;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: var(--border-radius);
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin: 0.25rem;
 }
 
-.button-delete {
-    background-color: #dc3545; /* Red for delete */
-    color: white;
-    padding: 5px 10px; /* Smaller padding for inline buttons */
-    border-radius: 3px;
-    text-decoration: none;
-}
-.button-delete:hover {
-    background-color: #c82333;
-    text-decoration: none;
+.btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); color: #fff; }
+.btn-primary:hover { background-color: var(--primary-hover-color); border-color: var(--primary-hover-color); }
+
+.btn-secondary { background-color: var(--secondary-color); border-color: var(--secondary-color); color: #fff; }
+.btn-secondary:hover { background-color: #5a6268; border-color: #545b62; }
+
+.btn-success { background-color: var(--success-color); border-color: var(--success-color); color: #fff; }
+.btn-success:hover { background-color: #1e7e34; border-color: #1c7430; }
+
+.btn-danger { background-color: var(--danger-color); border-color: var(--danger-color); color: #fff; }
+.btn-danger:hover { background-color: #c82333; border-color: #bd2130; }
+
+.btn-warning { background-color: var(--warning-color); border-color: var(--warning-color); color: var(--dark-color); }
+.btn-warning:hover { background-color: #e0a800; border-color: #d39e00; }
+
+.btn-info { background-color: var(--info-color); border-color: var(--info-color); color: #fff; }
+.btn-info:hover { background-color: #138496; border-color: #117a8b; }
+
+.btn-light { background-color: var(--light-color); border-color: #dae0e5; color: var(--dark-color); }
+.btn-light:hover { background-color: #e2e6ea; border-color: #dae0e5; }
+
+.btn-link { font-weight: 400; color: var(--primary-color); text-decoration: none; background-color: transparent; border: 0; }
+.btn-link:hover { text-decoration: underline; }
+
+.btn-sm { padding: 0.25rem 0.5rem; font-size: 0.875rem; line-height: 1.5; border-radius: 0.2rem; }
+.btn-lg { padding: 0.75rem 1.5rem; font-size: 1.25rem; line-height: 1.5; border-radius: 0.3rem; }
+
+/* Forms */
+.form-group {
+    margin-bottom: 1rem;
 }
 
-.button-edit {
-    background-color: #ffc107; /* Yellow for edit */
-    color: #212529; /* Dark text for yellow bg */
-    padding: 5px 10px;
-    border-radius: 3px;
-    text-decoration: none;
-}
-.button-edit:hover {
-    background-color: #e0a800;
-    text-decoration: none;
-}
-
-/* Form specific adjustments */
-form label {
+.form-group label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
 }
 
-/* Search form specific */
-form.search-form input[type="text"] {
-    width: auto; /* Don't make search input full width by default */
-    margin-right: 10px;
+.form-control {
+    display: block;
+    width: 100%;
+    padding: var(--input-padding-y) var(--input-padding-x);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: var(--border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-form.search-form button {
-    padding: 10px 15px; /* Ensure search button has consistent padding */
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.form-control::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+/* Tables */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+    border-collapse: collapse; /* Changed from 'collapse' for better border control with modern look */
+}
+.table th,
+.table td {
+    padding: 0.9rem; /* Increased padding */
+    vertical-align: top;
+    border-top: 1px solid #dee2e6; /* Lighter border */
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6; /* Heavier border for header */
+    background-color: var(--light-color); /* Light background for header */
+    color: var(--dark-color);
+    font-weight: 500;
+    text-align: left;
+}
+.table tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,0.025); /* Very subtle striping */
+}
+.table tbody tr:hover {
+    background-color: rgba(0,123,255,0.075); /* Subtle hover */
+}
+.table .actions a {
+    margin-right: 0.5rem;
+}
+.table .actions .btn {
+    margin-right: 5px; /* Spacing for buttons within table cells */
+}
+
+
+/* Alerts / Notifications */
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+}
+.alert-success { color: #155724; background-color: #d4edda; border-color: #c3e6cb; }
+.alert-danger { color: #721c24; background-color: #f8d7da; border-color: #f5c6cb; }
+.alert-warning { color: #856404; background-color: #fff3cd; border-color: #ffeeba; }
+.alert-info { color: #0c5460; background-color: #d1ecf1; border-color: #bee5eb; }
+
+/* Card (for grouping content, e.g., forms) */
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--box-shadow);
+}
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.card-header:first-child {
+    border-radius: calc(var(--border-radius) - 1px) calc(var(--border-radius) - 1px) 0 0;
+}
+.card-header h2, .card-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--dark-color);
+    border-bottom: none; /* Remove default h2 border if inside card-header */
+}
+.card-body {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+.card-footer {
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(0,0,0,.03);
+    border-top: 1px solid rgba(0,0,0,.125);
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 0.25rem !important; }
+.mt-2 { margin-top: 0.5rem !important; }
+.mt-3 { margin-top: 1rem !important; }
+.mb-1 { margin-bottom: 0.25rem !important; }
+.mb-2 { margin-bottom: 0.5rem !important; }
+.mb-3 { margin-bottom: 1rem !important; }
+.d-flex { display: flex !important; }
+.justify-content-between { justify-content: space-between !important; }
+.align-items-center { align-items: center !important; }
+
+
+/* Page-specific header actions (e.g., Add New button above a table) */
+.page-actions {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between; /* Pushes search and add button to opposite ends */
+    align-items: center;
+}
+
+.search-form {
+    display: flex;
+    gap: 0.5rem; /* Space between input and button */
+}
+.search-form .form-control {
+    width: auto; /* Allow input to size naturally or be set explicitly */
+    min-width: 200px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+    .main-nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    .main-nav ul li a {
+        display: block; /* Make links take full width for easier tapping */
+        width: 100%;
+        text-align: center;
+    }
+    .page-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .search-form {
+        width: 100%;
+        margin-top: 1rem;
+    }
+    .search-form .form-control {
+        flex-grow: 1; /* Allow search input to take available space */
+    }
+    .table thead {
+        display: none; /* Hide table header on small screens (or use more advanced responsive table techniques) */
+    }
+    .table, .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
+    }
+    .table tr {
+        margin-bottom: 1rem;
+        border: 1px solid #dee2e6;
+        border-radius: var(--border-radius);
+    }
+    .table td {
+        text-align: right; /* Align content to the right */
+        padding-left: 50%; /* Make space for data label */
+        position: relative;
+        border-top: none; /* Remove default top border for this style */
+        border-bottom: 1px solid #eee; /* Add bottom border for separation */
+    }
+    .table td:last-child {
+        border-bottom: none;
+    }
+    .table td::before {
+        content: attr(data-label); /* Use data-label for pseudo-header */
+        position: absolute;
+        left: 0.5rem;
+        width: calc(50% - 1rem);
+        padding-right: 0.5rem;
+        font-weight: 500;
+        text-align: left;
+        white-space: nowrap;
+    }
 }
