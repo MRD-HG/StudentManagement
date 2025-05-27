@@ -20,8 +20,8 @@ $page_title = "Welcome"; //
         <nav class="main-nav mb-3">
             <ul>
                 <li><a href="students/list.php" class="btn btn-lg btn-primary">Manage Students</a></li>
-                <li><a href="courses/list.php" class="btn btn-lg btn-info">Manage Courses</a></li> 
-                <li><a href="teachers/list.php" class="btn btn-lg btn-success">Manage Teachers</a></li>
+<li><a href="courses/list.php" class="btn btn-lg btn-info">Manage Courses</a></li>
+<li><a href="teachers/list.php" class="btn btn-lg btn-success">Manage Teachers</a></li>
             </ul>
         </nav>
 
