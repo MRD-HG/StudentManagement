@@ -1,0 +1,181 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h2 {
+    color: #0056b3; /* A nice blue */
+    border-bottom: 2px solid #0056b3;
+    padding-bottom: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff; /* Bootstrap primary blue */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button, input[type="submit"] {
+    background-color: #28a745; /* Green */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+input[type="text"], input[type="email"], input[type="number"], input[type="password"] {
+    width: calc(100% - 22px); /* Full width minus padding and border */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Important for width calculation */
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+form br {
+    display: none; /* Hide <br> if using block inputs or better spacing */
+}
+
+/* Add some spacing between form elements */
+form input, form button {
+    margin-bottom: 10px;
+}
+form input:last-of-type { /* More specific selector for the last input */
+    margin-bottom: 20px;
+}
+
+
+/* Message styles */
+.message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+.message.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* Navigation Links Styling */
+.nav-links a, .action-links a {
+    display: inline-block;
+    margin: 5px 0;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+}
+.nav-links a:hover, .action-links a:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+.nav-links { margin-bottom: 20px; }
+
+/* Specific button styles */
+.button-add {
+    background-color: #007bff; /* Blue for add */
+}
+.button-add:hover {
+    background-color: #0056b3;
+}
+
+.button-delete {
+    background-color: #dc3545; /* Red for delete */
+    color: white;
+    padding: 5px 10px; /* Smaller padding for inline buttons */
+    border-radius: 3px;
+    text-decoration: none;
+}
+.button-delete:hover {
+    background-color: #c82333;
+    text-decoration: none;
+}
+
+.button-edit {
+    background-color: #ffc107; /* Yellow for edit */
+    color: #212529; /* Dark text for yellow bg */
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+.button-edit:hover {
+    background-color: #e0a800;
+    text-decoration: none;
+}
+
+/* Form specific adjustments */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Search form specific */
+form.search-form input[type="text"] {
+    width: auto; /* Don't make search input full width by default */
+    margin-right: 10px;
+}
+form.search-form button {
+    padding: 10px 15px; /* Ensure search button has consistent padding */
+}
